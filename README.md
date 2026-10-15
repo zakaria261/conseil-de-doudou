@@ -26,6 +26,10 @@ npm start
 
 Ouvre ensuite [http://localhost:4200](http://localhost:4200). L’interface transmet les appels `/api` au serveur Python sur le port 8000. La documentation de l’API est disponible sur [http://localhost:8000/docs](http://localhost:8000/docs).
 
+Pour voir le rendu iPhone dans Chrome sur Mac : ouvre les outils de développement avec `⌘⌥I`, active le mode téléphone avec `⌘⇧M`, choisis un modèle d’iPhone et règle le zoom de l’aperçu sur `100 %` pour juger la taille réelle des textes.
+
+L’interface utilise la police système de l’appareil (SF sur iPhone et Mac), des icônes vectorielles et un logo vectoriel dans `frontend/public/doudou.svg`. L’icône d’écran d’accueil iPhone est `frontend/public/apple-touch-icon.png`.
+
 ## Contenu de la démonstration
 
 - Accueil responsive donnant directement accès à quatre fiches d’accompagnateurs : portrait, parcours, compétences et prochain créneau.
