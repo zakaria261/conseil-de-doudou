@@ -1,0 +1,247 @@
+<svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10.5 8-6.7a1.6 1.6 0 0 1 2 0l8 6.7v8.3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 20.8v-6.2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6.2"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.4 5.6L19 10l-5.6 1.4L12 17l-1.4-5.6L5 10l5.6-1.4z"/><path d="m19 15 .7 2.3L22 18l-2.3.7L19 21l-.7-2.3L16 18l2.3-.7zM5 3l.7 2.3L8 6l-2.3.7L5 9l-.7-2.3L2 6l2.3-.7z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M20.5 11.3a8.4 8.4 0 0 1-8.6 8.2 9 9 0 0 1-3.6-.8L3 20l1.5-4.8a8.1 8.1 0 0 1-1-3.9 8.5 8.5 0 0 1 17 0Z"/><path d="M8.1 11.5h.1m3.8 0h.1m3.8 0h.1"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 8.8c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8Z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="7.8" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0c-2.1 1.2-4.6 1.8-7.5 1.8S6.6 21.2 4.5 20Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M20 4c-8 0-14 3-14 10a6 6 0 0 0 6 6c7 0 8-8 8-16Z"/><path d="M3 21c3-5 7-8 13-11"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-plus-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v9M7.5 12h9"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+</svg>
+
+<div class="app-shell">
+  <aside class="sidebar" [class.sidebar-open]="mobileMenuOpen" aria-label="Navigation principale">
+    <button class="brand" type="button" (click)="go('home')" aria-label="Les Conseils de Doudou, accueil">
+      <img class="brand-logo" src="doudou.svg" alt="" />
+      <span class="brand-wordmark">Les Conseils <span>de Doudou</span></span>
+    </button>
+
+    <div class="nav-caption">MON ESPACE</div>
+    <nav class="side-nav">
+      <button *ngFor="let item of navItems" type="button" (click)="go(item.id)" [class.active]="view === item.id">
+        <svg class="nav-icon"><use [attr.href]="'#i-' + item.icon" /></svg>
+        <span>{{ item.label }}</span>
+        <span class="nav-unread" *ngIf="item.id === 'messages'">1</span>
+      </button>
+    </nav>
+
+    <div class="side-spacer"></div>
+    <div class="sidebar-support">
+      <span class="support-flower">✳</span>
+      <p>Tu peux venir comme tu es.</p>
+      <span>On avance à ton rythme.</span>
+    </div>
+    <button class="companion-entry" type="button" (click)="go('companion')"><span class="companion-entry-icon">✿</span><span>Espace accompagnateur</span><span class="demo-tag">démo</span></button>
+    <button class="admin-entry" type="button" (click)="go('admin')">
+      <span class="admin-dot"></span><span>Espace administration</span><span class="demo-tag">démo</span>
+    </button>
+    <button class="side-profile" type="button" (click)="go('profile')">
+      <span class="avatar avatar-small avatar-user">{{ user.pseudo.slice(0, 2).toUpperCase() }}</span>
+      <span class="side-profile-copy"><strong>{{ user.pseudo }}</strong><small>Mon espace personnel</small></span>
+      <span class="side-more">···</span>
+    </button>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar">
+      <button class="mobile-menu-toggle icon-button" type="button" (click)="mobileMenuOpen = !mobileMenuOpen" aria-label="Ouvrir le menu">
+        <svg><use href="#i-menu" /></svg>
+      </button>
+      <div class="topbar-title"><div class="eyebrow">UN ESPACE POUR SOUFFLER</div><h1>{{ pageTitle }}</h1></div>
+      <label class="global-search" [class.search-open]="mobileSearchOpen" (click)="mobileSearchOpen = true">
+        <svg><use href="#i-search" /></svg>
+        <input [(ngModel)]="globalQuery" (click)="$event.stopPropagation()" (focus)="mobileSearchOpen = true" (keydown.enter)="submitSearch()" placeholder="Un sujet, une personne…" aria-label="Rechercher un sujet ou une accompagnatrice" />
+        <kbd>↵</kbd>
+      </label>
+      <button class="notification-button icon-button" type="button" (click)="notificationOn = !notificationOn; showToast(notificationOn ? 'Tes encouragements sont activés.' : 'Tes encouragements sont en pause.');" [attr.aria-label]="notificationOn ? 'Mettre les notifications en pause' : 'Activer les notifications'">
+        <svg><use href="#i-bell" /></svg><span class="notification-pip" *ngIf="notificationOn"></span>
+      </button>
+      <button class="sos-button" type="button" (click)="showSosModal = true"><span class="sos-heart">♥</span> Besoin d’aide immédiate ? <b>SOS</b></button>
+    </header>
+
+    <div class="content-wrap">
+      <div class="demo-note"><span class="demo-note-dot"></span> Exemples de profils et de conversations pour la démonstration</div>
+
+      <ng-container [ngSwitch]="view">
+        <section *ngSwitchCase="'home'" class="page home-page">
+          <section class="featured-coaches" aria-labelledby="home-coaches-heading">
+            <div class="featured-coaches-heading">
+              <div>
+                <div class="eyebrow">UNE RENCONTRE À TON RYTHME</div>
+                <h2 id="home-coaches-heading">Des accompagnateurs à découvrir</h2>
+                <p>Leur parcours, leurs sujets d’écoute et leurs disponibilités, au même endroit.</p>
+              </div>
+              <span class="featured-heading-mark" aria-hidden="true">✿</span>
+            </div>
+            <div class="featured-toolbar">
+              <label class="inner-search"><svg><use href="#i-search" /></svg><input [(ngModel)]="globalQuery" placeholder="Un prénom, un sujet, une compétence…" aria-label="Rechercher un accompagnateur" /></label>
+              <span class="featured-count">{{ featuredCoaches.length }} profils disponibles</span>
+            </div>
+            <div class="featured-list">
+              <article class="featured-coach-card" *ngFor="let coach of featuredCoaches">
+                <div class="featured-photo-wrap" [ngClass]="coach.tone">
+                  <span class="featured-photo-fallback">{{ coach.initials }}</span>
+                  <img *ngIf="coach.photoUrl" [src]="coach.photoUrl" alt="" loading="lazy" (error)="hidePortrait($event)" />
+                <button class="featured-add" [class.is-followed]="coach.followed" type="button" (click)="toggleFollow(coach)" [attr.aria-label]="coach.followed ? 'Ne plus suivre ' + coach.name : 'Suivre ' + coach.name" [attr.aria-pressed]="!!coach.followed">{{ coach.followed ? '✓' : '+' }}</button>
+                </div>
+                <div class="featured-card-copy">
+                  <div class="featured-card-meta"><span class="featured-available"><i></i> Disponible</span><span *ngIf="coach.age">{{ coach.age }} ans</span></div>
+                  <h3>{{ coach.name }}</h3><span class="featured-role">{{ coach.title }}</span>
+                  <p class="featured-bio">{{ coach.bio }}</p>
+                  <p class="featured-studies">{{ coach.studies }}</p>
+                  <div class="featured-skills"><span *ngFor="let skill of coach.specialties">{{ skill }}</span></div>
+                  <div class="featured-card-footer"><span><svg><use href="#i-clock" /></svg> {{ coach.nextSlots[0] || 'Créneau à venir' }}</span><button type="button" (click)="bookCoach(coach)">Voir profil et créneaux <svg><use href="#i-arrow" /></svg></button></div>
+                </div>
+              </article>
+            </div>
+            <div class="featured-empty" *ngIf="!featuredCoaches.length">Aucun profil disponible pour cette recherche. Essaie un autre mot-clé.</div>
+            <p class="featured-disclaimer"><svg><use href="#i-lock" /></svg> Profils et portraits fictifs pour la démonstration. Les parcours seront vérifiés avant l’ouverture.</p>
+          </section>
+
+          <section class="welcome-hero">
+            <div class="hero-copy">
+              <div class="hero-kicker"><span>✿</span> Un espace sans jugement</div>
+              <h2>Tu n’as pas à<br /><em>tout porter seule.</em></h2>
+              <p>Une écoute humaine et un peu de douceur pour traverser ce qui se présente, à ton rythme.</p>
+              <div class="hero-actions">
+                <button class="button button-primary" type="button" (click)="go('coaches')">Trouver une personne à l’écoute <svg><use href="#i-arrow" /></svg></button>
+                <button class="text-link" type="button" (click)="go('community')">Découvrir la communauté</button>
+              </div>
+              <div class="hero-note"><svg><use href="#i-lock" /></svg> La confidentialité est prise en compte dès la conception.</div>
+              <div class="hero-note audience-note"><svg><use href="#i-heart" /></svg> Pensé d’abord pour les femmes, ouvert à toutes et tous.</div>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="art-halo"></div><span class="art-star star-one">✳</span><span class="art-star star-two">✦</span>
+              <div class="hero-brand"><img class="hero-logo" src="doudou.svg" alt="" /><span class="hero-wordmark">Les Conseils <strong>de Doudou</strong><small>cogito ergo sum</small></span></div>
+            </div>
+          </section>
+
+          <section class="home-grid">
+            <div class="main-column">
+              <div class="section-heading"><div><div class="eyebrow">UN PETIT PAS À LA FOIS</div><h2>Qu’est-ce qui te ferait du bien ?</h2></div><button class="round-arrow" type="button" (click)="go('offers')" aria-label="Voir les offres"><svg><use href="#i-arrow" /></svg></button></div>
+              <div class="choice-grid">
+                <button class="choice-card choice-lilac" type="button" (click)="go('coaches')"><span class="choice-icon"><svg><use href="#i-sparkles" /></svg></span><span class="choice-title">En parler avec quelqu’un</span><span class="choice-caption">Trouve une écoute qui te ressemble.</span><span class="choice-arrow">↗</span></button>
+                <button class="choice-card choice-peach" type="button" (click)="go('community')"><span class="choice-icon"><svg><use href="#i-heart" /></svg></span><span class="choice-title">Partager avec d’autres</span><span class="choice-caption">Des mots, du soutien, sans pression.</span><span class="choice-arrow">↗</span></button>
+                <button class="choice-card choice-sage" type="button" (click)="go('appointments')"><span class="choice-icon"><svg><use href="#i-calendar" /></svg></span><span class="choice-title">Prendre rendez-vous</span><span class="choice-caption">Choisis le moment qui te convient.</span><span class="choice-arrow">↗</span></button>
+              </div>
+
+              <div class="soft-reminder"><span class="reminder-icon">✳</span><div><b>Tu as le droit de demander un peu d’aide.</b><span>Il n’y a pas besoin d’attendre que tout déborde.</span></div><button type="button" (click)="go('coaches')" aria-label="Trouver un accompagnateur">→</button></div>
+            </div>
+
+            <aside class="home-aside">
+              <section class="next-appointment-card"><div class="aside-card-head"><span class="eyebrow">TON PROCHAIN RENDEZ-VOUS</span><span class="calendar-mini">17<br /><small>OCT.</small></span></div><div class="appointment-person"><span class="avatar avatar-medium lilac">SA</span><div><b>Sarah</b><span>Séance par messages</span></div></div><div class="appointment-time"><svg><use href="#i-clock" /></svg> Samedi · 10:30 — 11:30</div><button type="button" class="button button-soft" (click)="go('appointments')">Voir le rendez-vous <svg><use href="#i-arrow" /></svg></button></section>
+              <section class="gentle-note-card"><span class="note-quote">“</span><div class="eyebrow">UN MOT POUR AUJOURD’HUI</div><p>Tu n’as pas besoin d’avoir toutes les réponses pour faire un premier pas.</p><span class="note-signature">Une pensée pour toi <i>✿</i></span><button type="button" class="note-refresh" (click)="showToast('Prends ce qui te parle, laisse le reste.');" aria-label="Nouvelle pensée">↻</button></section>
+              <section class="community-peek"><div class="section-heading"><div><div class="eyebrow">LE CERCLE</div><h3>Quelques mots partagés</h3></div><button class="plain-arrow" type="button" (click)="go('community')">→</button></div><article *ngFor="let post of posts.slice(0, 2)" class="peek-post"><div class="peek-avatar">{{ post.initials }}</div><div><b>{{ post.author }}</b><p>{{ post.title }}</p></div></article><button class="community-link" type="button" (click)="go('community')">Rejoindre les échanges <span>→</span></button></section>
+            </aside>
+          </section>
+
+          <section class="boundary-banner"><span class="boundary-mark"><svg><use href="#i-heart" /></svg></span><p><b>Un soutien du quotidien, tout simplement.</b><span>Les accompagnateurs offrent de l’écoute et du soutien. Cela ne remplace pas une consultation psychologique et n’inclut ni diagnostic ni prescription.</span></p><button type="button" (click)="go('offers')">Comprendre les offres <span>→</span></button></section>
+        </section>
+
+        <section *ngSwitchCase="'coaches'" class="page directory-page">
+          <div class="page-intro-row"><div><div class="eyebrow">UNE RENCONTRE À TON RYTHME</div><h2>Choisis une personne avec qui tu te sens bien.</h2><p>Parcours les profils, découvre leurs sujets de prédilection et choisis un premier créneau.</p></div><div class="directory-flower">✳</div></div>
+          <div class="directory-toolbar"><label class="inner-search"><svg><use href="#i-search" /></svg><input [(ngModel)]="globalQuery" placeholder="Rechercher une spécialité, un sujet…" aria-label="Rechercher des accompagnateurs" /></label><span class="results-count">{{ filteredCoaches.length }} profils de démonstration</span></div>
+          <div class="directory-grid">
+            <article class="coach-card" *ngFor="let coach of filteredCoaches">
+              <div class="coach-card-top"><span class="avatar avatar-large" [ngClass]="coach.tone">{{ coach.initials }}<img *ngIf="coach.photoUrl" [src]="coach.photoUrl" alt="" loading="lazy" (error)="hidePortrait($event)" /></span><button class="follow-icon" type="button" (click)="toggleFollow(coach)" [attr.aria-label]="coach.followed ? 'Ne plus suivre ' + coach.name : 'Suivre ' + coach.name" [attr.aria-pressed]="!!coach.followed">{{ coach.followed ? '♥' : '♡' }}</button></div>
+              <div class="coach-name-row"><h3>{{ coach.name }}</h3><span class="availability"><i [class.offline]="!coach.online"></i>{{ coach.online ? 'Disponible' : 'Bientôt de retour' }}</span></div>
+              <div class="coach-role">{{ coach.title }}</div><p class="coach-education">{{ coach.studies }}</p><p class="coach-card-bio">{{ coach.bio }}</p>
+              <div class="tag-list"><span *ngFor="let tag of coach.specialties">{{ tag }}</span></div>
+              <div class="next-slot"><svg><use href="#i-clock" /></svg> Prochain créneau : <b>{{ coach.nextSlots[0] || 'À venir' }}</b></div>
+              <div class="coach-card-footer"><div><small>À partir de</small><strong>13,99 €</strong></div><button class="button button-primary" type="button" (click)="bookCoach(coach)">Voir le profil <svg><use href="#i-arrow" /></svg></button></div>
+            </article>
+          </div>
+          <p class="muted-caption"><svg><use href="#i-lock" /></svg> Profils de démonstration. Les parcours et disponibilités seront à valider avant l’ouverture du service.</p>
+        </section>
+
+        <section *ngSwitchCase="'appointments'" class="page appointments-page">
+          <div class="page-intro-row"><div><div class="eyebrow">PRENDRE LE TEMPS</div><h2>Un rendez-vous qui te ressemble.</h2><p>Choisis une personne, un format et un créneau qui s’accordent avec ton quotidien.</p></div><button class="button button-primary" type="button" (click)="go('coaches')"><svg><use href="#i-plus" /></svg> Réserver une séance</button></div>
+          <div class="booking-layout"><section class="booking-list-panel"><div class="section-heading"><div><div class="eyebrow">TON AGENDA</div><h3>À venir</h3></div><span class="count-pill">{{ bookings.length }}</span></div>
+            <article class="booking-row" *ngFor="let booking of bookings"><div class="booking-date-icon"><svg><use href="#i-calendar" /></svg></div><div class="booking-main"><div class="booking-date">{{ booking.dateTime }}</div><b>{{ booking.coachName }} · {{ booking.kind }}</b><span>Un temps à toi, dans un espace privé.</span></div><span class="status-pill">{{ booking.status }}</span></article>
+            <div class="empty-state" *ngIf="!bookings.length"><span>✿</span><b>Ton agenda est encore léger.</b><p>Tu peux prendre le temps de parcourir les profils avant de réserver.</p><button class="text-link" type="button" (click)="go('coaches')">Découvrir les accompagnateurs →</button></div>
+          </section><aside class="booking-help-card"><div class="help-orbit">✿</div><div class="eyebrow">COMMENT ÇA SE PASSE ?</div><h3>Un premier pas, sans pression.</h3><ul><li><span>01</span> Choisis une personne et son créneau.</li><li><span>02</span> Sélectionne messages ou visioconférence.</li><li><span>03</span> Retrouve les détails dans tes rendez-vous.</li></ul><p>Les séances individuelles sont proposées à partir de 13,99 € pour une heure par messages.</p><button class="text-link" type="button" (click)="go('offers')">Voir les six formules <span>→</span></button></aside></div>
+        </section>
+
+        <section *ngSwitchCase="'messages'" class="page messages-page">
+          <div class="messages-heading"><div><div class="eyebrow">TES ÉCHANGES PRIVÉS</div><h2>Tu peux écrire quand tu veux.</h2><p>Les conversations de démonstration restent dans cet espace.</p></div><span class="privacy-chip"><svg><use href="#i-lock" /></svg> Espace privé</span></div>
+          <div class="messenger"><aside class="thread-list"><div class="thread-list-head"><h3>Conversations</h3><button class="round-small" type="button" (click)="showToast('Tes nouvelles conversations apparaîtront ici.')" aria-label="Nouvelle conversation"><svg><use href="#i-plus" /></svg></button></div><label class="thread-search"><svg><use href="#i-search" /></svg><input placeholder="Chercher dans mes messages" aria-label="Rechercher parmi les conversations" /></label>
+              <button class="thread-item" *ngFor="let thread of chatThreads" type="button" (click)="openThread(thread.name)" [class.selected]="activeThread === thread.name"><span class="avatar avatar-medium" [ngClass]="thread.tone">{{ thread.initials }}<i *ngIf="thread.online" class="avatar-status"></i></span><span class="thread-copy"><b>{{ thread.name }}</b><small>{{ thread.preview }}</small></span><span class="thread-meta"><small>{{ thread.time }}</small><i *ngIf="thread.unread">{{ thread.unread }}</i></span></button>
+            </aside><section class="chat-panel"><header class="chat-header"><span class="avatar avatar-medium" [ngClass]="activeCoach?.tone || 'sage'">{{ activeCoach?.initials || 'CC' }}</span><div><b>{{ activeThread }}</b><small><i class="online-dot"></i> {{ activeCoach ? 'Accompagnatrice · Fil de démonstration' : 'Cercle communautaire · exemple' }}</small></div><button class="icon-button chat-more" type="button" (click)="showToast('Cette conversation est conservée dans cette démonstration.')" aria-label="Informations sur la conversation">···</button></header>
+              <div class="chat-boundary"><svg><use href="#i-lock" /></svg> Cette conversation est un exemple. Ne partage pas de données sensibles dans cette démonstration.</div>
+              <div class="chat-messages"><div class="chat-day">Aujourd’hui</div><div *ngFor="let message of activeMessages" class="chat-line" [class.own-message]="message.own"><span *ngIf="!message.own" class="message-avatar">{{ message.sender.slice(0, 2).toUpperCase() }}</span><div class="message-content"><div class="message-bubble">{{ message.text }}</div><small>{{ message.time }}</small></div></div><div class="chat-empty" *ngIf="!activeMessages.length">Commence par un petit bonjour, si tu en as envie 🌿</div></div>
+              <div class="composer-row"><input [(ngModel)]="messageDraft" (keydown.enter)="sendMessage()" placeholder="Écris quelques mots…" aria-label="Écrire un message" /><button class="send-button" type="button" (click)="sendMessage()" aria-label="Envoyer le message"><svg><use href="#i-send" /></svg></button></div><div class="composer-caption">Tu peux répondre quand tu le souhaites.</div>
+            </section></div>
+        </section>
+
+        <section *ngSwitchCase="'community'" class="page community-page">
+          <div class="community-intro"><div><div class="eyebrow">CHAT & PARTAGE</div><h2>Un peu de lien, sans devoir tout expliquer.</h2><p>Des idées, des petites victoires et des questions partagées dans un cadre bienveillant.</p></div><div class="community-bloom">✿</div></div>
+          <div class="community-layout"><section class="feed-column"><div class="community-tabs"><button type="button" [class.selected]="!isPrivateRoom" (click)="isPrivateRoom = false">Pour tout le monde <span>12</span></button><button type="button" [class.selected]="isPrivateRoom" (click)="isPrivateRoom = true"><svg><use href="#i-lock" /></svg> Cercles privés <span>3</span></button></div>
+              <button class="create-post-card" type="button" (click)="showPostComposer = !showPostComposer"><span class="avatar avatar-small avatar-user">{{ user.pseudo.slice(0, 2).toUpperCase() }}</span><span>Qu’aimerais-tu partager aujourd’hui ?</span><i><svg><use href="#i-plus" /></svg></i></button>
+              <div class="post-composer" *ngIf="showPostComposer"><textarea [(ngModel)]="postDraft" maxlength="600" placeholder="Tu peux écrire quelques mots, une question ou une petite victoire…" aria-label="Écrire un partage"></textarea><div class="composer-actions"><span><svg><use href="#i-lock" /></svg> {{ isPrivateRoom ? 'Partagé dans le cercle privé' : 'Visible dans la communauté' }}</span><button class="button button-primary" type="button" [disabled]="!postDraft.trim()" (click)="addPost()">Partager <svg><use href="#i-arrow" /></svg></button></div></div>
+              <div class="feed-tools"><label class="inner-search"><svg><use href="#i-search" /></svg><input [(ngModel)]="communityQuery" placeholder="Chercher un mot ou un sujet…" aria-label="Chercher dans la communauté" /></label><select [(ngModel)]="selectedTopic" aria-label="Filtrer par thème"><option *ngFor="let topic of topics" [value]="topic">{{ topic }}</option></select></div>
+              <article class="post-card" *ngFor="let post of filteredPosts"><div class="post-header"><span class="post-avatar">{{ post.initials }}</span><div class="post-author"><b>{{ post.author }}</b><span>{{ post.time }} · <svg *ngIf="post.room !== 'Tout le monde'"><use href="#i-lock" /></svg>{{ post.room }}</span></div><button class="post-more" type="button" (click)="showToast('Merci de contribuer à un espace accueillant.')" aria-label="Options de la publication">···</button></div><span class="post-topic">{{ post.topic }}</span><h3>{{ post.title }}</h3><p class="post-body">{{ post.body }}</p><div class="post-actions"><button type="button" (click)="toggleLike(post)" [class.liked]="post.liked"><svg><use href="#i-heart" /></svg> {{ post.likes }} <span>J’aime</span></button><button type="button" (click)="showToast('Les réponses apparaîtront dans la conversation de ce partage.')"><svg><use href="#i-message" /></svg> {{ post.replies }} <span>réponses</span></button><button type="button" (click)="showToast('Le lien de partage est prêt à copier.')">Partager</button></div></article>
+              <div class="empty-state" *ngIf="!filteredPosts.length"><span>✿</span><b>Aucun partage ne correspond pour le moment.</b><p>Tu peux essayer un autre mot ou lancer la conversation.</p><button class="text-link" type="button" (click)="communityQuery = ''; selectedTopic = 'Tout voir'">Réinitialiser les filtres</button></div>
+            </section><aside class="community-aside"><section class="guidelines-card"><span class="guideline-icon"><svg><use href="#i-heart" /></svg></span><div class="eyebrow">LES MOTS QUI FONT DU BIEN</div><h3>Un espace sûr se construit ensemble.</h3><p>Un peu de douceur suffit parfois à ouvrir la conversation.</p><ul><li><span>✳</span> Écouter sans juger</li><li><span>✳</span> Respecter le rythme de chacun</li><li><span>✳</span> Garder les échanges privés</li></ul><button class="text-link" type="button" (click)="showToast('La charte détaillée sera définie avant l’ouverture.')">Lire la charte <span>→</span></button></section><section class="topic-card"><div class="eyebrow">LES SUJETS DU MOMENT</div><button *ngFor="let topic of topics.slice(1)" type="button" (click)="selectedTopic = topic"><span># {{ topic }}</span><small>Explorer →</small></button></section></aside></div>
+        </section>
+
+        <section *ngSwitchCase="'profile'" class="page profile-page">
+          <div class="page-intro-row"><div><div class="eyebrow">TON ESPACE PERSONNEL</div><h2>Ton profil, à ta façon.</h2><p>Choisis ce que tu souhaites partager avec la communauté. La photo reste facultative.</p></div><span class="privacy-chip"><svg><use href="#i-lock" /></svg> Tu gardes le contrôle</span></div>
+          <div class="profile-layout"><section class="profile-card"><div class="profile-cover"><span>✿</span><span class="cover-star">✳</span></div><div class="profile-identity"><span class="avatar profile-avatar avatar-user">{{ user.pseudo.slice(0, 2).toUpperCase() }}</span><div><h3>{{ user.pseudo }}</h3><span>Membre depuis octobre 2026</span></div><button class="outline-small" type="button" (click)="showToast('L’ajout de photo sera disponible dans une prochaine version.')">Ajouter une photo</button></div><div class="profile-stats"><div><b>3</b><span>amis</span></div><div><b>{{ followedCount }}</b><span>personnes suivies</span></div><div><b>2</b><span>partages</span></div></div><div class="profile-bio"><div class="eyebrow">MA BIOGRAPHIE</div><p>{{ user.bio || 'Ajoute quelques mots sur toi, si tu en as envie.' }}</p></div></section>
+            <section class="profile-form-card"><div class="section-heading"><div><div class="eyebrow">MES INFORMATIONS</div><h3>Reste toi-même.</h3></div><span class="privacy-chip"><svg><use href="#i-lock" /></svg> Visibilité à définir</span></div><label class="field-label">Mon pseudonyme<input [(ngModel)]="user.pseudo" maxlength="32" aria-label="Mon pseudonyme" /></label><label class="field-label">Quelques mots sur moi<textarea [(ngModel)]="user.bio" maxlength="240" rows="4" aria-label="Quelques mots sur moi"></textarea><small>{{ user.bio.length }}/240 caractères · Facultatif</small></label><label class="field-label">Adresse e-mail<input [(ngModel)]="user.email" type="email" aria-label="Adresse e-mail" /></label><div class="notification-setting"><span class="notification-setting-icon"><svg><use href="#i-bell" /></svg></span><span><b>Les mots doux de Doudou</b><small>Recevoir des encouragements choisis pour toi.</small></span><button type="button" class="toggle-switch" [class.on]="notificationOn" (click)="notificationOn = !notificationOn" [attr.aria-pressed]="notificationOn" aria-label="Activer les notifications personnalisées"><i></i></button></div><button class="button button-primary save-profile" type="button" (click)="saveProfile()">Enregistrer mon profil <svg><use href="#i-arrow" /></svg></button></section></div>
+          <div class="visibility-note"><svg><use href="#i-lock" /></svg><div><b>Tu choisis ce qui est visible.</b><span>La maquette prévoit de ne pas afficher ton adresse e-mail. La photo et la biographie sont facultatives.</span></div><button type="button" (click)="showToast('Les réglages de visibilité seront précisés avant l’ouverture du service.')">Gérer la visibilité</button></div>
+        </section>
+
+        <section *ngSwitchCase="'offers'" class="page offers-page">
+          <div class="offers-heading"><span class="pricing-flower">✿</span><div class="eyebrow">UN PEU DE SOUTIEN, À TON BUDGET</div><h2>Choisis ce qui te convient,<br /><em>sans te mettre la pression.</em></h2><p>Tu peux commencer gratuitement dans la communauté, puis choisir une séance si tu en ressens le besoin.</p></div>
+          <div class="offers-grid"><article class="offer-card" *ngFor="let offer of visibleOffers" [class.offer-featured]="offer.popular"><span class="popular-ribbon" *ngIf="offer.popular">La formule préférée</span><span class="offer-icon"><svg><use [attr.href]="offer.id === 'community' ? '#i-heart' : offer.id.includes('visio') ? '#i-sparkles' : '#i-message'" /></svg></span><h3>{{ offer.name }}</h3><p>{{ offer.description }}</p><div class="offer-price"><strong>{{ formatPrice(offer.price) }}</strong><span>{{ offer.unit }}</span></div><button class="button" [class.button-primary]="offer.popular || offer.price === 0" [class.button-outline]="!offer.popular && offer.price > 0" type="button" (click)="offer.price === 0 ? go('community') : go('coaches')">{{ offer.price === 0 ? 'Entrer gratuitement' : 'Choisir cette formule' }} <svg><use href="#i-arrow" /></svg></button></article></div>
+          <div class="pricing-footnote"><svg><use href="#i-lock" /></svg><span>Les tarifs sont ceux du projet initial. Les modalités d’abonnement, la durée d’engagement et les conditions de paiement seront précisées avant l’ouverture.</span></div>
+          <section class="offer-boundary"><span>✳</span><div><b>À savoir sur l’accompagnement</b><p>Les accompagnateurs proposent une écoute et un soutien au quotidien. Ils ne posent pas de diagnostic, ne prescrivent pas de traitement et ne remplacent pas un psychologue.</p></div><button type="button" (click)="showSosModal = true">Besoin d’aide urgente ? <b>3114</b></button></section>
+        </section>
+
+        <ng-container *ngSwitchCase="'companion'"><section *ngIf="companionCoach as companion" class="page companion-page">
+          <div class="companion-welcome"><div><div class="eyebrow">ESPACE ACCOMPAGNATEUR · COMPTE DE DÉMONSTRATION</div><h2>Bonjour {{ companion.name }}, bienvenue dans ton espace.</h2><p>Prépare tes prochains échanges et fais évoluer ton profil à ton rythme.</p></div><button class="availability-toggle" type="button" [class.is-on]="companion.online" (click)="toggleCompanionAvailability()"><i></i>{{ companion.online ? 'Visible dans l’annuaire' : 'Profil masqué' }}</button></div>
+          <div class="companion-summary"><div><span class="companion-summary-icon purple"><svg><use href="#i-calendar" /></svg></span><small>Rendez-vous à venir</small><b>{{ companionBookings.length }}</b><span>dans ton agenda</span></div><div><span class="companion-summary-icon peach"><svg><use href="#i-message" /></svg></span><small>Conversations</small><b>2</b><span>fils de démonstration</span></div><div><span class="companion-summary-icon green"><svg><use href="#i-sparkles" /></svg></span><small>Disponibilités</small><b>{{ companion.nextSlots.length }}</b><span>créneaux proposés</span></div></div>
+          <div class="companion-layout"><section class="companion-panel"><div class="section-heading"><div><div class="eyebrow">TON AGENDA</div><h3>Les prochains rendez-vous</h3></div><button class="text-link" type="button" (click)="go('messages')">Ouvrir les messages →</button></div><article class="companion-booking" *ngFor="let booking of companionBookings"><span class="companion-booking-date"><svg><use href="#i-calendar" /></svg></span><div><small>{{ booking.dateTime }}</small><b>{{ booking.coachName === companion.name ? 'Dounia' : booking.coachName }} · {{ booking.kind }}</b><span>Réservation confirmée · exemple</span></div><button type="button" (click)="openThread(companion.name); go('messages')">Conversation <span>→</span></button></article><div class="companion-empty" *ngIf="!companionBookings.length"><span>✿</span><b>Ton agenda est libre pour l’instant.</b><small>Ajoute quelques créneaux pour être visible dans l’annuaire.</small></div></section>
+            <section class="companion-panel availability-panel"><div class="section-heading"><div><div class="eyebrow">MES CRÉNEAUX</div><h3>Quand es-tu disponible ?</h3></div><span class="privacy-chip"><svg><use href="#i-clock" /></svg> Agenda démo</span></div><p>Les personnes peuvent choisir l’un des créneaux que tu proposes.</p><div class="slot-list"><div class="slot-chip" *ngFor="let slot of companion.nextSlots"><svg><use href="#i-clock" /></svg><span>{{ slot }}</span><button type="button" (click)="removeCompanionSlot(slot)" [attr.aria-label]="'Retirer le créneau ' + slot">×</button></div><span class="no-slots" *ngIf="!companion.nextSlots.length">Aucun créneau pour le moment.</span></div><div class="add-slot-row"><input [(ngModel)]="slotDraft" (keydown.enter)="addCompanionSlot()" placeholder="Ex. Jeudi 17:30" aria-label="Nouveau créneau" /><button type="button" (click)="addCompanionSlot()"><svg><use href="#i-plus" /></svg> Ajouter</button></div></section>
+            <section class="companion-panel companion-profile-panel"><div class="section-heading"><div><div class="eyebrow">MON PROFIL PUBLIC</div><h3>Ta présentation</h3></div><span class="avatar avatar-small" [ngClass]="companion.tone">{{ companion.initials }}</span></div><div class="companion-profile-details"><b>{{ companion.name }} <small>· {{ companion.title }}</small></b><span>{{ companion.studies }}</span></div><label class="field-label">Quelques mots pour te présenter<textarea [(ngModel)]="companion.bio" rows="3" maxlength="400" aria-label="Présentation de l’accompagnateur"></textarea></label><div class="companion-profile-footer"><small>Profils et parcours à valider avant l’ouverture du service.</small><button class="button button-primary" type="button" (click)="saveCompanionProfile()">Enregistrer <svg><use href="#i-arrow" /></svg></button></div></section></div>
+          <div class="admin-dev-note"><svg><use href="#i-lock" /></svg> Les critères d’admission, le statut professionnel affiché et les règles de disponibilité restent à confirmer avant la mise en service.</div>
+        </section></ng-container>
+
+        <section *ngSwitchCase="'admin'" class="page admin-page">
+          <div class="admin-welcome"><div><div class="eyebrow">GESTION DE LA PLATEFORME</div><h2>Bienvenue dans l’espace d’administration.</h2><p>Gère les profils de démonstration, les offres et les partages de la communauté.</p></div><span class="admin-mode-badge"><i></i> Mode démo</span></div>
+          <div class="admin-stat-grid"><div><span class="admin-stat-icon lavender"><svg><use href="#i-user" /></svg></span><small>Profils</small><b>{{ coaches.length }}</b><span>exemples à vérifier</span></div><div><span class="admin-stat-icon peach"><svg><use href="#i-heart" /></svg></span><small>Partages</small><b>{{ posts.length }}</b><span>dans la communauté</span></div><div><span class="admin-stat-icon sage"><svg><use href="#i-sparkles" /></svg></span><small>Offres</small><b>{{ offers.length }}</b><span>formules du projet</span></div></div>
+          <div class="admin-sections"><section class="admin-panel"><div class="section-heading"><div><div class="eyebrow">ANNUAIRE</div><h3>Profils accompagnateurs</h3></div><span class="count-pill">{{ coaches.length }}</span></div><p class="admin-panel-note">Vérifie les informations avant de publier un profil.</p><div *ngFor="let coach of coaches" class="admin-row"><span class="avatar avatar-small" [ngClass]="coach.tone">{{ coach.initials }}</span><div class="admin-row-copy"><b>{{ coach.name }}</b><small>{{ coach.studies }}</small></div><span class="admin-status" [class.paused]="!coach.online">{{ coach.online ? 'Visible' : 'Masqué' }}</span><button class="admin-action" type="button" (click)="toggleCoach(coach)">{{ coach.online ? 'Masquer' : 'Afficher' }}</button></div></section>
+            <section class="admin-panel"><div class="section-heading"><div><div class="eyebrow">MODÉRATION</div><h3>Partages récents</h3></div><span class="count-pill">{{ posts.length }}</span></div><p class="admin-panel-note">Retire un contenu qui ne respecterait pas la charte.</p><div *ngFor="let post of posts" class="admin-row moderation-row"><span class="post-avatar">{{ post.initials }}</span><div class="admin-row-copy"><b>{{ post.title }}</b><small>{{ post.author }} · {{ post.topic }}</small></div><button class="admin-action remove-action" type="button" (click)="moderate(post)">Retirer</button></div><div class="admin-empty" *ngIf="!posts.length">Aucun partage en attente.</div></section>
+            <section class="admin-panel admin-offers-panel"><div class="section-heading"><div><div class="eyebrow">TARIFICATION</div><h3>Formules proposées</h3></div><span class="count-pill">{{ offers.length }}</span></div><p class="admin-panel-note">Les prix sont affichés à titre indicatif selon le projet initial.</p><div *ngFor="let offer of offers" class="admin-row"><span class="admin-offer-icon"><svg><use href="#i-sparkles" /></svg></span><div class="admin-row-copy"><b>{{ offer.name }}</b><small>{{ formatPrice(offer.price) }} {{ offer.unit }}</small></div><label class="admin-price-label"><span>Prix (€)</span><input type="number" min="0" max="10000" step="0.01" [(ngModel)]="offer.price" [attr.aria-label]="'Prix de ' + offer.name" /></label><span class="admin-status" [class.paused]="!offer.active">{{ offer.active ? 'Active' : 'Masquée' }}</span><button class="admin-action" type="button" (click)="saveOffer(offer)">Enregistrer</button><button class="admin-action" type="button" (click)="toggleOffer(offer)">{{ offer.active ? 'Masquer' : 'Afficher' }}</button></div></section></div>
+          <div class="admin-dev-note"><svg><use href="#i-lock" /></svg> Les fonctions d’administration et les comptes de démonstration doivent être remplacés par une authentification sécurisée avant toute mise en service réelle.</div>
+        </section>
+      </ng-container>
+
+      <footer class="app-footer"><span>© 2026 Les Conseils de Doudou</span><span>Un espace d’écoute et de soutien au quotidien.</span><button type="button" (click)="showSosModal = true">Besoin d’une aide immédiate ? <b>3114</b></button></footer>
+    </div>
+  </main>
+
+  <nav class="mobile-bottom-nav" aria-label="Navigation rapide"><button *ngFor="let item of [navItems[0], navItems[4], navItems[1], navItems[3], navItems[5]]" type="button" [class.active]="view === item.id" (click)="go(item.id)" [attr.aria-current]="view === item.id ? 'page' : null"><svg><use [attr.href]="item.id === 'community' ? '#i-plus-circle' : item.id === 'coaches' ? '#i-search' : '#i-' + item.icon" /></svg><span>{{ item.id === 'coaches' ? 'Explorer' : item.id === 'community' ? 'Partager' : item.id === 'profile' ? 'Profil' : item.id === 'messages' ? 'Messages' : 'Accueil' }}</span></button></nav>
+
+  <div class="modal-backdrop" *ngIf="showSosModal" (click)="showSosModal = false">
+    <section class="modal-card sos-modal" role="dialog" aria-modal="true" aria-labelledby="sos-title" (click)="$event.stopPropagation()"><button class="modal-close" type="button" (click)="showSosModal = false" aria-label="Fermer"><svg><use href="#i-close" /></svg></button><span class="sos-modal-icon">♥</span><div class="eyebrow">TU N’AS PAS À RESTER SEULE</div><h2 id="sos-title">Tu veux appeler le 3114 ?</h2><p>Le 3114 est le numéro national de prévention du suicide. Un professionnel formé t’écoute gratuitement, 24 h/24 et 7 j/7, partout en France.</p><a class="button button-sos-confirm" href="tel:3114" (click)="showSosModal = false">Appeler le 3114 <span>→</span></a><a class="sos-info-link" href="https://3114.fr" target="_blank" rel="noopener noreferrer">En savoir plus sur 3114.fr</a><div class="sos-modal-foot">Danger immédiat ? Appelle le <a href="tel:112">112</a> ou le <a href="tel:15">15 (SAMU)</a>.</div></section>
+  </div>
+
+  <div class="modal-backdrop" *ngIf="showBookingModal && selectedCoach" (click)="showBookingModal = false"><section class="modal-card booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-title" (click)="$event.stopPropagation()">
+    <button class="modal-close" type="button" (click)="showBookingModal = false" aria-label="Fermer"><svg><use href="#i-close" /></svg></button>
+    <div class="booking-modal-person"><span class="avatar avatar-large" [ngClass]="selectedCoach.tone">{{ selectedCoach.initials }}<img *ngIf="selectedCoach.photoUrl" [src]="selectedCoach.photoUrl" alt="" (error)="hidePortrait($event)" /></span><div><div class="eyebrow">PROFIL DE DÉMONSTRATION</div><h2 id="booking-title">Un créneau avec {{ selectedCoach.name }}</h2><span>{{ selectedCoach.title }}<ng-container *ngIf="selectedCoach.age"> · {{ selectedCoach.age }} ans</ng-container></span></div></div>
+    <p class="booking-modal-bio">{{ selectedCoach.bio }}</p><p class="booking-modal-studies">{{ selectedCoach.studies }}</p><div class="tag-list booking-modal-skills"><span *ngFor="let skill of selectedCoach.specialties">{{ skill }}</span></div>
+    <label class="field-label">Choisis un créneau<select [(ngModel)]="selectedSlot" aria-label="Choisir un créneau"><option *ngFor="let slot of selectedCoach.nextSlots" [value]="slot">{{ slot }}</option></select></label><div class="booking-format-label">Le format qui te convient</div><div class="format-options"><button type="button" [class.chosen]="selectedOffer === 'message'" (click)="selectedOffer = 'message'"><svg><use href="#i-message" /></svg><b>Messages</b><span>13,99 € · 1 h</span></button><button type="button" [class.chosen]="selectedOffer === 'video'" (click)="selectedOffer = 'video'"><svg><use href="#i-sparkles" /></svg><b>Visio</b><span>14,99 € · 1 h</span></button></div><button class="button button-primary booking-confirm" type="button" (click)="confirmBooking()">Confirmer le rendez-vous <svg><use href="#i-arrow" /></svg></button><small class="modal-disclaimer">Écoute et soutien au quotidien · Ne remplace pas un psychologue.</small>
+  </section></div>
+
+  <div class="toast" *ngIf="toast" role="status"><span>✿</span>{{ toast }}</div>
+</div>
